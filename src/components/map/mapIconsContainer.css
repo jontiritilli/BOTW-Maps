@@ -1,0 +1,21 @@
+.blue-glow {
+  -webkit-filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba);
+  filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba);
+}
+
+.pulsing-icon {
+  animation: pulsate 3s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes pulsate {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba)
+      brightness(0.9);
+  }
+  50% {
+    filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba)
+      brightness(1.4);
+  }
+}
