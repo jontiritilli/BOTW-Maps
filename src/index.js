@@ -1,28 +1,11 @@
 import React from "react";
-import "./index.css";
-import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
+import ReactDOM from "react-dom";
+import { StoreProvider } from "./store";
+import App from "./app";
 
-import { ControlPanel, reducer } from "./components/controlPanel/ControlPanel";
-
-import MapContainer from "./components/map/MapContainer";
-
-import locationData from "./data/locations";
-
-const initialState = {
-  activeIconTypes: [],
-  locations: locationData
-};
-
-let store = createStore(reducer, initialState);
-
-render(
-  <Provider store={store}>
-    <div>
-      <ControlPanel store={store} />
-      <MapContainer />
-    </div>
-  </Provider>,
-  document.getElementById("map-container")
+ReactDOM.render(
+  <StoreProvider>
+    <App />
+  </StoreProvider>,
+  document.getElementById("root")
 );

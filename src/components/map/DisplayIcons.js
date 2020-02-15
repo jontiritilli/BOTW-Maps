@@ -1,10 +1,13 @@
-import React from "react";
-import IconText from "./IconText";
+import React, { useContext } from "react";
+import { Store } from "../../store";
 import { Marker, Popup } from "react-leaflet";
-
+import IconText from "./IconText";
 import icons from "../../data/icons";
 
-function DisplayIcons({ activeIconTypes, locations }) {
+const DisplayIcons = () => {
+  const {
+    state: { activeIconTypes, locations }
+  } = useContext(Store);
   const displayIcons = activeIconTypes.map(iconType => {
     return locations[iconType].map(location => {
       const icon = icons[iconType];
@@ -27,6 +30,6 @@ function DisplayIcons({ activeIconTypes, locations }) {
   });
 
   return <div>{displayIcons}</div>;
-}
+};
 
 export default DisplayIcons;
