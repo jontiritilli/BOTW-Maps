@@ -1,10 +1,8 @@
 import React from "react";
-
 import { Map, TileLayer } from "react-leaflet";
-
-import MapIconsContainer from "./MapIconsContainer";
-
+import DisplayIcons from "./DisplayIcons";
 import "./mapContainer.css";
+import "./mapIconsContainer.css";
 
 const maxBounds = [
   [0, -176.59],
@@ -23,7 +21,9 @@ function MapContainer() {
     >
       <TileLayer minZoom={3} maxZoom={6} url="/images/tiles/{z}/{x}/{y}.png" />
 
-      <MapIconsContainer />
+      <div>
+        <DisplayIcons />
+      </div>
     </Map>
   );
 }
