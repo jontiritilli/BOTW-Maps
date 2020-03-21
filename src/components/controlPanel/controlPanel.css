@@ -1,60 +1,67 @@
 .control-panel {
-  background: #000;
-  background: rgba(0, 0, 0, 0.8);
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  bottom: 0;
-  padding: 1rem;
   position: fixed;
-  width: 100vw;
-  z-index: 9000;
+  right: 0;
+  z-index: 401;
 }
 
-.legend-list {
-  display: inline-block;
-  list-style: none;
-  margin: 0;
-  padding: 0 0 0;
-}
-
-.legend-list li {
-  display: inline-block;
-  margin: 0;
-  padding-right: 0.8rem;
-}
-
-.legend-list label {
+.control-panel .menu-control {
   cursor: pointer;
-}
-
-.legend-list img {
+  width: 45px;
   height: 30px;
+  right: 0;
+  position: absolute;
+  margin: 10px 8px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.legend-list input[type="checkbox"] {
+.control-panel .menu-control .hamburger-line {
+  width: 80%;
+  height: 4px;
+  background: black;
+  margin-top: 5px;
+  transition: transform 0.2s;
+}
+
+.control-panel .menu-control.active .hamburger-line:nth-of-type(1) {
+  transform: rotate(-45deg) translate(-7px, 5px);
+}
+.control-panel .menu-control.active .hamburger-line:nth-of-type(2) {
   display: none;
 }
+.control-panel .menu-control.active .hamburger-line:nth-of-type(3) {
+  transform: rotate(45deg);
+}
 
-.legend-list label:hover:after {
-  bottom: 1rem;
-  font-size: 1.7rem;
-  font-family: monospace;
-  top: -21px;
-  left: 15px;
-  height: 34px;
-  color: #fff;
-  content: attr(title);
+.control-panel .legend {
   position: absolute;
-  text-shadow: 0 1px 3px #000;
-  z-index: 9001;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px 0 0 5px;
+  top: 45px;
+  right: -100px;
+  opacity: 0;
+  transition: opacity 0.2s, right 0.2s ease-in;
 }
 
-.legend-list :checked + label img {
-  -webkit-filter: drop-shadow(0 0 10px #0a1844);
-  filter: drop-shadow(0 0 10px #0a1844);
+.control-panel .legend.active {
+  opacity: 1;
+  right: 0;
+  transition: opacity 0.2s, right 0.2s ease-in;
 }
 
-.legend-list :not(:checked) + label img {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  transition: ease-in-out 50ms filter;
+.control-panel .legend .legend-icon {
+  cursor: pointer;
+  margin: 10px 15px;
+}
+
+.control-panel .legend .legend-icon.active {
+  -webkit-filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba);
+  filter: drop-shadow(0 0 3px #4390ba) drop-shadow(0 0 3px #4390ba);
 }

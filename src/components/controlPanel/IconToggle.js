@@ -2,20 +2,19 @@ import React, { useContext } from "react";
 import { Store } from "../../store";
 
 const IconToggle = ({ displayName, iconType }) => {
-  const { dispatch } = useContext(Store);
-  const iconIdentifier = `${iconType}-control-checkbox`;
-
+  const {
+    dispatch,
+    state: { activeIconTypes }
+  } = useContext(Store);
+  const isActive = activeIconTypes.includes(iconType);
   return (
-    <li>
-      <input type="checkbox" id={iconIdentifier} />
-      <label
-        htmlFor={iconIdentifier}
-        onClick={() => dispatch({ type: "SET_ACTIVE_TYPES", iconType })}
-        title={displayName}
-      >
-        <img src={`images/icons/${iconType}.png`} alt={iconType} />
-      </label>
-    </li>
+    <div
+      className={isActive ? "legend-icon active" : "legend-icon"}
+      onClick={() => dispatch({ type: "SET_ACTIVE_TYPES", iconType })}
+      title={displayName}
+    >
+      <img src={`images/icons/${iconType}.png`} alt={iconType} />
+    </div>
   );
 };
 

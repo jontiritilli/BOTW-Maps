@@ -3,18 +3,49 @@ import IconToggle from "./IconToggle";
 import icons from "../../data/icons";
 import "./controlPanel.css";
 
-const ControlPanel = () => {
-  const displayIconToggles = Object.keys(icons).map(iconType => {
-    const { displayName } = icons[iconType];
+class ControlPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isActive: false };
+    this.toggleMenuState = this.toggleMenuState.bind(this);
+  }
+  createIconToggles() {
+    const iconToggles = Object.keys(icons).map(iconType => {
+      const { displayName } = icons[iconType];
 
-    return <IconToggle {...{ displayName, iconType, key: iconType }} />;
-  });
+      return <IconToggle {...{ displayName, iconType, key: iconType }} />;
+    });
+    return iconToggles;
+  }
 
-  return (
-    <div className="control-panel">
-      <ul className="legend-list">{displayIconToggles}</ul>
-    </div>
-  );
-};
+  toggleMenuState() {
+    this.setState({ isActive: !this.state.isActive });
+  }
+
+  render() {
+    const displayIconToggles = this.createIconToggles();
+    return (
+      <div
+        className={
+          this.state.isActive ? "control-panel active" : "control-panel"
+        }
+      >
+        <div
+          className={
+            this.state.isActive ? "menu-control active" : "menu-control"
+          }
+          onClick={this.toggleMenuState}
+        >
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
+          <div className="hamburger-line"></div>
+        </div>
+        <div className={this.state.isActive ? "legend active" : "legend"}>
+          {displayIconToggles}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default ControlPanel;
